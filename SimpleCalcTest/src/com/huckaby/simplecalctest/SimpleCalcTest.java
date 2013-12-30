@@ -1,5 +1,7 @@
 package com.huckaby.simplecalctest;
 
+import java.text.DecimalFormat;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -70,27 +72,27 @@ public class SimpleCalcTest extends Activity {
 		double op1 = Double.parseDouble(operand1);
 		double op2 = Double.parseDouble(operand2);
 		
-		double result = 0.0;
+		double evalResult = 0.0;
 		
 		if (operator == "+") {
-			result = op1 + op2;
+			evalResult = op1 + op2;
 		}
 		else if (operator == "-") {
-			result = op1 - op2;
+			evalResult = op1 - op2;
 		}
 		else if (operator == "*") {
-			result = op1 * op2;
+			evalResult = op1 * op2;
 		}
 		else if (operator == "/") {
 			if (op2 == 0) {
-				result = 0;
+				evalResult = 0;
 			}
 			else {
-				result = op1/op2;
+				evalResult = op1/op2;
 			}
 		}
 		
-		return result;
+		return evalResult;
 	}
 	
 	private void clear(int clearType) {
@@ -249,8 +251,12 @@ public class SimpleCalcTest extends Activity {
 				operationState = OPERATION_STATE_RESULT;
 				opCurrentTextView.setText("");
 				operand2 = operandWorking;
+				//result = new DecimalFormat("#.#########").format(Double.toString(evaluate()));
 				result = Double.toString(evaluate());
-				operandTextView.setText(result);
+				if (result.length() > 11)
+					operandTextView.setText("ERR");
+				else
+					operandTextView.setText(result);
 			};
 		
 	}
