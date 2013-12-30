@@ -63,6 +63,7 @@ public class SimpleCalcTest extends Activity {
 		return true;
 	}
 	
+	//Evaluate
 	private double evaluate() {
 		Log.i("operand1", operand1);
 		Log.i("operand2", operand2);
